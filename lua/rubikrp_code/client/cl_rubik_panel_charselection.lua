@@ -53,8 +53,6 @@ function OpenRubikCharactersPanel()
     local html = vgui.Create("DHTML", frame)
     html:SetSize(ScreenW,ScreenH)
     html:Center()
-    // html:OpenURL("http://rubik.rpdeath.com/website/gamelogin.php?steamid="..PlayerData["users"]["users_steamid_64"].."&secret="..PlayerData["users"]["users_api_key"])
-    // html:OpenURL("http://rubik.rpdeath.com/ingame/characterCreationP1.php")
     html:OpenURL("http://coruscant.aperoyoutube.fr/ingame/index.php?steamid="..PlayerData["users"]["users_steamid_64"].."&secret="..PlayerData["users"]["users_api_key"])
     
      
