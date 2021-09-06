@@ -1,0 +1,2 @@
+Rubik_Lang = {}
+
