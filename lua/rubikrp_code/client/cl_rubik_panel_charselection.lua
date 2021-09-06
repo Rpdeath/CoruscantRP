@@ -84,9 +84,11 @@ function OpenRubikCharactersPanel()
     
         html:AddFunction("rubik", "SelectChar", function(charid)
             print(charid)
+            
+        end)
 
-            
-            
+        html:AddFunction("rubik", "EnterTheGame", function()
+
         end)
     end
  // end of JS callback functions
