@@ -132,31 +132,32 @@ end
 function PlayerSpawing(ply)
     if(serverUP) then
         PlayerInServerList[ply:SteamID64()] = PlayerInServerList[ply:SteamID64()] or {}
-
-        
         GetPlayerData(ply,false)
-
-        
-        
     end
-
-
-
 end
 
 
 function PlayerCharacterPanelOpening(len,ply)
-    
     GetPlayerData(ply,true)
-
-
 end
 
 
 function RubikSpawnCharacter(len,ply) 
     PlayerInServerList[ply:SteamID64()]["SelectedCharacter"] = net.ReadTable()
-    print(PlayerInServerList[ply:SteamID64()]["SelectedCharacter"])
-end
+    // print(util.TableToJSON(PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["ranks_format"], true))
+    charName =  PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["ranks_format"]
+    charName =  string.Replace(charName,"$surname$",PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["characters_surname"])
+    charName =  string.Replace(charName,"$name$",PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["characters_name"])
+    ply:setDarkRPVar("rpname",charName)
+    ply:setDarkRPVar("job",PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["ranks_name"])
+    ply:setDarkRPVar("money",PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["money"])
+    ply:SetMaxHealth(100+tonumber(PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["perks_health"]))
+    ply:SetMaxArmor(0+tonumber(PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["perks_armor"]))
+    ply:SetHealth(100+tonumber(PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["perks_health"]))
+    ply:SetArmor(0+tonumber(PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["perks_armor"]))
+end 
+
+
 
 
 

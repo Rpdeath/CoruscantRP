@@ -49,7 +49,7 @@ function OpenRubikCharactersPanel()
     local background = vgui.Create( "DImage", frame )
 	background:SetPos( 0, 0 )
 	background:SetSize( ScreenW, ScreenH )
-    background:SetImage( "rubik/all/background.png" )
+    background:SetImage( "rubik/Char_Creation/background.png" )
     background:SetZPos( -10 )
 
     local html = vgui.Create("DHTML", frame)
