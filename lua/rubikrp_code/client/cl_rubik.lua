@@ -3,3 +3,4 @@ Rubik_Lang = Rubik_Lang or {}
 
 PlayerData = PlayerData or {}
 Ranks = Ranks or {}
+SelectedChar = SelectedChar or {}

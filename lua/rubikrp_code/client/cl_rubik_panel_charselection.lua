@@ -3,8 +3,10 @@ Rubik_Lang = Rubik_Lang or {}
 
 PlayerData = PlayerData or {}
 Ranks = Ranks or {}
+SelectedChar = SelectedChar or {}
 
 RanksToShow = RanksToShow or {}
+
 
 RubikCharacterPanelHome = RubikCharacterPanelHome or nil
 
@@ -81,11 +83,19 @@ function OpenRubikCharactersPanel()
         end)
     
         html:AddFunction("rubik", "SelectChar", function(charid)
-            print(charid)
+            for k,v in pairs(PlayerData["characters"]) do
+                if (v["characters_id"]==charid) then
+                    SelectedChar = v
+                end 
+            end
             
         end)
 
         html:AddFunction("rubik", "EnterTheGame", function()
+            SpawnCharacter(SelectedChar)
+            RubikCharPanelOpen2 = false
+            RubikCharPanelOpen1 = false
+            RubikCharacterPanelHome:Close()
 
         end)
     end

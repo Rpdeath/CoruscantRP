@@ -3,6 +3,7 @@ Rubik_Lang = Rubik_Lang or {}
 
 PlayerData = PlayerData or {}
 Ranks = Ranks or {}
+SelectedChar = SelectedChar or {}
 
 -- Receive Function
 
@@ -29,6 +30,11 @@ function AskServerDataForSelectionPanel()
     net.SendToServer()
 end
 
+function SpawnCharacter(char)
+    net.Start("RubikSpawnCharacter")
+    net.WriteTable(PlayerData)
+    net.SendToServer()
+end
 
 
 -- Network Receive

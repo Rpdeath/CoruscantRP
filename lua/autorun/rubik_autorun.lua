@@ -24,6 +24,7 @@ end
 
 if SERVER then
     include("rubikrp_code/server/sv_rubik.lua")
+    include("rubikrp_code/server/sv_rubik_hud.lua")
     print("Rubik Server Loaded")
 end
   
