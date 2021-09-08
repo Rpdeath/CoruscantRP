@@ -66,14 +66,14 @@ plyMeta.drawPlayerInfo = function(self)
 			
 			draw.DrawText( string.upper(self:Nick()), "NumberFont", pos.x, pos.y - 96, Color( 255, 255, 255, FadeLerp* 255 ), TEXT_ALIGN_CENTER)					
 
-			if PlayerRanks[self:GetNWString("usergroup", "")] then
-				NamePos = pos.y + 100			
-				draw.DrawText( Ranked, "NumberFont", pos.x, pos.y - 63, Color( 255, 155, 0, FadeLerp* 255 ), TEXT_ALIGN_CENTER )		
-			end					
+			// if PlayerRanks[self:GetNWString("usergroup", "")] then
+			// 	NamePos = pos.y + 100			
+			// 	draw.DrawText( Ranked, "NumberFont", pos.x, pos.y - 63, Color( 255, 155, 0, FadeLerp* 255 ), TEXT_ALIGN_CENTER )		
+			// end					
 				
 			if GAMEMODE.Config.showjob then
 				local teamname = self:getDarkRPVar("job") or team.GetName(self:Team())
-					draw.DrawText( string.upper(teamname),"NumberFont", pos.x, NamePos, Color( 200, 200, 200, FadeLerp* 255 ), TEXT_ALIGN_CENTER)      
+					// draw.DrawText( string.upper(teamname),"NumberFont", pos.x, NamePos, Color( 200, 200, 200, FadeLerp* 255 ), TEXT_ALIGN_CENTER)      
 				end		
 			end			
 			
