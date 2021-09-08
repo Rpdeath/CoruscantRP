@@ -1,6 +1,6 @@
 Rubik_Config = {}
 
-Rubik_Config.url = "http://rpdeatd.cluster024.hosting.ovh.net/gamemode/api"
+Rubik_Config.url = "http://coruscant.aperoyoutube.fr/api"
 Rubik_Config.api_key = "aRd6etr45ml9uI83"
 
 
