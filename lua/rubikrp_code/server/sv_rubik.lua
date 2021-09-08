@@ -4,9 +4,10 @@ Rubik_Lang = Rubik_Lang or {}
 
 PlayerInServerList = PlayerInServerList or {}
 Ranks = Ranks or {}
-
+Skins = Skins or {}
 -- NetworkString Client
 util.AddNetworkString("SendPlayerRanks") -- Send Ranks to a specific client - (Needed for creation panel)
+util.AddNetworkString("SendPlayerSkins") -- Send Ranks to a specific client - (Needed for creation panel)
 util.AddNetworkString("SendPlayerData") -- Send player's data to client - (User Data - Characters Data) - Will evolve in future update
 util.AddNetworkString("SendPlayerRanksPanel") -- Send Ranks to a specific client and ask for the character panel to open
 -- NetworkString Server
@@ -106,6 +107,25 @@ function GetAllRanks(ply,panel) -- This Function return a dictionnary of all ran
     )
 end
 
+function GetAllSkins(ply,panel) -- This Function return a dictionnary of all ranks in the database - JSON
+    // print(Rubik_Config.url .."/get/ranks.php?key=".. Rubik_Config.api_key)
+    http.Fetch( Rubik_Config.url .."/get/skins.php?key=".. Rubik_Config.api_key,
+    function( body, len, headers, code )
+        Skins = util.JSONToTable(convert_TextTo_utf8(body)) or Skins or {} 
+        net.Start("SendPlayerSkins")
+        net.WriteTable(Ranks)
+        net.Send(ply)
+        GetAllRanks(ply,panel)
+    end,   
+    function( error )  
+            
+    end, {  
+    ["accept-encoding"] = "gzip, deflate",
+    ["accept-language"] = "fr" 
+    }
+    )
+end
+
 -- Void - Network Sending
 function GetPlayerData(ply,panel) -- This Function return a dictionnary of the player data - JSON
     print(Rubik_Config.url .."/get/users.php?key=".. Rubik_Config.api_key.."&steamid="..ply:SteamID64())
@@ -115,7 +135,7 @@ function GetPlayerData(ply,panel) -- This Function return a dictionnary of the p
         net.Start("SendPlayerData")
         net.WriteTable(PlayerInServerList[ply:SteamID64()])
         net.Send(ply)
-        GetAllRanks(ply,panel)
+        GetAllSkins(ply,panel)
         
     end,   
     function( error )  

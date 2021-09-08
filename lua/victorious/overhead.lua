@@ -10,6 +10,7 @@ local HealthsTeam = 100
 
 PlayerInServerList = PlayerInServerList or {}
 Skins = Skins or {}
+
 plyMeta.drawPlayerInfo = function(self)  
     if not IsValid(self) then return end
 	local pos = self:EyePos()	

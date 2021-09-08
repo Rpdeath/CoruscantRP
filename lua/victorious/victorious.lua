@@ -1,7 +1,7 @@
 VictoriousConfig = {}
 
 SelectedChar = SelectedChar or {}
-
+Skins = Skins or {}
 include("config.lua")
 include("languages.lua")
 include("overhead.lua")
