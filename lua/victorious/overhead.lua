@@ -13,7 +13,7 @@ Skins = Skins or {}
 plyMeta.drawPlayerInfo = function(self)  
     if not IsValid(self) then return end
 	local pos = self:EyePos()	
-	if(self:GetPos():Distance(LocalPlayer():GetPos()) <= 150) then	
+	if(self:GetPos():Distance(LocalPlayer():GetPos()) <= 200) then	
 
 		pos.z = pos.z + 1
 		pos = pos:ToScreen()
@@ -61,14 +61,14 @@ plyMeta.drawPlayerInfo = function(self)
 			// surface.DrawRect( pos.x + 27, pos.y - 63, 45, 2 )	
 			// surface.DrawRect( pos.x + 52, pos.y - 63, 20, 3 )				
 					
-			
-			if (self:GetPos():Distance(LocalPlayer():GetPos()) <= 500) then
-			
-				// Name Display
-				draw.DrawText( string.upper(self:Nick()), "NumberFont", pos.x + 100, pos.y - 130, Color( 255, 255, 255, FadeLerp* 255 ), TEXT_ALIGN_CENTER)	
-				surface.SetDrawColor( 200, 200, 200, 90  ) 	
-				surface.DrawLine(pos.x, pos.y, pos.x + 100, pos.y - 100)	
-				
+			ShowName = true
+			if (self:GetPos():Distance(LocalPlayer():GetPos()) <= 200) then
+				if (ShowName) then
+					// Name Display
+					draw.DrawText( string.upper(self:Nick()), "NumberFont", pos.x + 100, pos.y - 130, Color( 255, 255, 255, FadeLerp* 255 ), TEXT_ALIGN_CENTER)	
+					surface.SetDrawColor( 200, 200, 200, 90  ) 	
+					surface.DrawLine(pos.x, pos.y, pos.x + 100, pos.y - 100)	
+				end
 				// Model Display
 				ModelOnPlayer  = "Apparence Inconnu"
 				if (next(Skins) != nil) then
@@ -81,11 +81,11 @@ plyMeta.drawPlayerInfo = function(self)
 				draw.DrawText( ModelOnPlayer, "NumberFont", pos.x + 200, pos.y + 30, Color( 255, 255, 255, FadeLerp* 255 ), TEXT_ALIGN_CENTER)	
 				surface.SetDrawColor( 200, 200, 200, 90  ) 	
 				surface.DrawLine(pos.x, pos.y + 70, pos.x + 200, pos.y + 60)
-				
+
 
 			end			
 			
-			if (self:GetPos():Distance(LocalPlayer():GetPos()) <= 500) then
+			if (self:GetPos():Distance(LocalPlayer():GetPos()) <= 200) then
 				FadeLerp = Lerp( FrameTime()* 10, FadeLerp, 1)		
 			else
 				FadeLerp = Lerp( FrameTime()* 10, FadeLerp, 0)	
@@ -97,13 +97,3 @@ plyMeta.drawPlayerInfo = function(self)
 
 end
 
-plyMeta.drawWantedInfo = plyMeta.drawWantedInfo or function(self)
-	if not self:Alive() then return end
-    if(self:GetPos():Distance(LocalPlayer():GetPos()) <= 300) then
-		local pos = self:EyePos()
-		pos.z = pos.z + 1
-		pos = pos:ToScreen()
-		draw.DrawText( "WANTED", "NumberFont", pos.x, pos.y - 43, Color( 255, 255, 255, 255 ), TEXT_ALIGN_CENTER)	
-		
-	end
-end
