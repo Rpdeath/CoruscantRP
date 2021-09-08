@@ -4,7 +4,7 @@ Rubik_Lang = Rubik_Lang or {}
 PlayerData = PlayerData or {}
 Ranks = Ranks or {}
 SelectedChar = SelectedChar or {}
-
+Skins = Skins or {}
 RanksToShow = RanksToShow or {}
 
 
@@ -85,7 +85,7 @@ function OpenRubikCharactersPanel()
         html:AddFunction("rubik", "SelectChar", function(charid)
             for k,v in pairs(PlayerData["characters"]) do
                 if (v["characters_id"]==charid) then
-                    SelectedChar = v
+                    SelectedChar = PlayerData["characters"][k]
                 end 
             end
             

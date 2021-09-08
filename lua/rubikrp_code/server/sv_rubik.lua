@@ -4,9 +4,11 @@ Rubik_Lang = Rubik_Lang or {}
 
 PlayerInServerList = PlayerInServerList or {}
 Ranks = Ranks or {}
+Skins = Skins or {}
 
 -- NetworkString Client
 util.AddNetworkString("SendPlayerRanks") -- Send Ranks to a specific client - (Needed for creation panel)
+util.AddNetworkString("SendPlayerSkins") -- Send skins to a specific client - (Needed for creation panel)
 util.AddNetworkString("SendPlayerData") -- Send player's data to client - (User Data - Characters Data) - Will evolve in future update
 util.AddNetworkString("SendPlayerRanksPanel") -- Send Ranks to a specific client and ask for the character panel to open
 -- NetworkString Server
@@ -96,6 +98,7 @@ function GetAllRanks(ply,panel) -- This Function return a dictionnary of all ran
         end
         net.WriteTable(Ranks)
         net.Send(ply)
+        GetAllskins(ply)
     end,   
     function( error )  
             
@@ -105,6 +108,26 @@ function GetAllRanks(ply,panel) -- This Function return a dictionnary of all ran
     }
     )
 end
+
+-- Void - Network Sending
+function GetAllskins(ply) -- This Function return a dictionnary of all skins in the database - JSON
+    http.Fetch( Rubik_Config.url .."/get/skins.php?key=".. Rubik_Config.api_key,
+    function( body, len, headers, code )
+        Skins = util.JSONToTable(convert_TextTo_utf8(body)) or Skins or {} 
+        net.Start("SendPlayerSkins")
+        net.WriteTable(Ranks)
+        net.Send(ply)
+        GetAllskins(ply)
+    end,   
+    function( error )  
+            
+    end, {  
+    ["accept-encoding"] = "gzip, deflate",
+    ["accept-language"] = "fr" 
+    }
+    )
+end
+
 
 -- Void - Network Sending
 function GetPlayerData(ply,panel) -- This Function return a dictionnary of the player data - JSON
@@ -148,7 +171,7 @@ end
 
 function RubikSpawnCharacter(len,ply) 
     PlayerInServerList[ply:SteamID64()]["SelectedCharacter"] = net.ReadTable()
-    // print(util.TableToJSON(PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["ranks_format"], true))
+    
     charName =  PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["ranks_format"]
     charName =  string.Replace(charName,"$surname$",PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["characters_surname"])
     charName =  string.Replace(charName,"$name$",PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["characters_name"])
@@ -159,6 +182,7 @@ function RubikSpawnCharacter(len,ply)
     ply:SetMaxArmor(0+tonumber(PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["perks_armor"]))
     ply:SetHealth(100+tonumber(PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["perks_health"]))
     ply:SetArmor(0+tonumber(PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["perks_armor"]))
+    print(util.TableToJSON(PlayerInServerList[ply:SteamID64()]["SelectedCharacter"], true))
 end 
 
 

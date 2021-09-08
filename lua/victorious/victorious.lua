@@ -304,7 +304,7 @@ local function vPlayerMenu()
 	surface.SetDrawColor( 0,0,0,80 )
 	surface.DrawRect( VictoriousConfig.XPosition + 60, VictoriousConfig.YPosition + 112, 320, 2 )		
 	surface.SetDrawColor( 255,255,255 )
-	surface.DrawRect( VictoriousConfig.XPosition + 60, VictoriousConfig.YPosition +  112, (320) * ArmorLerp / 100, 2 )	
+	surface.DrawRect( VictoriousConfig.XPosition + 60, VictoriousConfig.YPosition +  112, (320) * ArmorLerp / LocalPlayer():GetMaxArmor(), 2 )	
 	draw.DrawText( getPhrase("Armor"), "NumberFont", VictoriousConfig.XPosition + 60, VictoriousConfig.YPosition + 80, Color( 255,255,255 ), TEXT_ALIGN_LEFT )		
 	draw.DrawText( Armor, "NumberFont", VictoriousConfig.XPosition + 200, VictoriousConfig.YPosition + 80, VictoriousConfig.Theme, TEXT_ALIGN_CENTER )	
 	
@@ -497,10 +497,10 @@ local function vPlayerMenu()
 					
 
 	surface.SetDrawColor( 255,255,255,30 )
-	surface.DrawRect( VictoriousConfig.XPosition + 100, VictoriousConfig.YPosition - 17, 200, 1 )	
-	surface.DrawRect( VictoriousConfig.XPosition - 10, VictoriousConfig.YPosition - 10, 15, 2 )
+	// surface.DrawRect( VictoriousConfig.XPosition + 100, VictoriousConfig.YPosition - 17, 200, 1 )	
+	// surface.DrawRect( VictoriousConfig.XPosition - 10, VictoriousConfig.YPosition - 10, 15, 2 )
 	surface.DrawRect( VictoriousConfig.XPosition - 10, moneypos + 70, 15, 2 )	
-	draw.DrawText( getPhrase("Playermenu"), "PlayerMenu", VictoriousConfig.XPosition + 200, VictoriousConfig.YPosition - 50, Color( 255,255,255 ), TEXT_ALIGN_CENTER )
+	draw.DrawText( "Information", "PlayerMenu", VictoriousConfig.XPosition + 200, VictoriousConfig.YPosition - 50, Color( 255,255,255 ), TEXT_ALIGN_CENTER )
 
 end
 

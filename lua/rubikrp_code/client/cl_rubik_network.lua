@@ -4,7 +4,7 @@ Rubik_Lang = Rubik_Lang or {}
 PlayerData = PlayerData or {}
 Ranks = Ranks or {}
 SelectedChar = SelectedChar or {}
-
+Skins = Skins or {}
 -- Receive Function
 
 function SendPlayerData()
@@ -14,6 +14,10 @@ end
 
 function SendPlayerRanks()
     Ranks = net.ReadTable()
+end
+
+function SendPlayerSkins()
+    Skins = net.ReadTable()
 end
 
 function SendPlayerRanksOpenPanel()
@@ -40,5 +44,6 @@ end
 -- Network Receive
 
 net.Receive("SendPlayerRanks",SendPlayerRanks)
+net.Receive("SendPlayerSkins",SendPlayerSkins)
 net.Receive("SendPlayerRanksPanel",SendPlayerRanksOpenPanel)
 net.Receive("SendPlayerData",SendPlayerData)
