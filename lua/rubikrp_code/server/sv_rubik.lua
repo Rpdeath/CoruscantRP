@@ -195,7 +195,7 @@ end
 
 -- Checking if API Server is working ( We are sure that the server is running without major problems)
 firstConnecion = true
-serverUP = true -- we're assuming the server is up before checking it
+serverUP = false -- we're assuming the server is down before checking it
 
 hook.Add( "PlayerConnect", "JoinGlobalMessage", function( name, ip )
     if(firstConnecion) then
