@@ -51,10 +51,22 @@ function OpenRubikCharactersPanel()
 	background:SetSize( ScreenW, ScreenH )
     background:SetImage( "rubik/Char_Creation/background.png" )
     background:SetZPos( -10 )
+ 
+    local quit = vgui.Create( "DImageButton", frame )
+    quit:SetPos(ScreenW-252/3,10)
+    quit:SetSize(252/4,93/4)
+    quit:SetImage( "rubik/characterpanel/all/close_pressed.png" )
+    quit.OnDepressed = function()
+        RubikCharPanelOpen2 = false
+        RubikCharPanelOpen1 = false
+        RubikCharacterPanelHome:Close()
+    end
+    quit:SetZPos( 10 )
 
     local html = vgui.Create("DHTML", frame)
     html:SetSize(ScreenW,ScreenH)
     html:Center()
+    html:SetZPos( -10 )
     html:OpenURL("http://coruscant.aperoyoutube.fr/ingame/index.php?steamid="..PlayerData["users"]["users_steamid_64"].."&secret="..PlayerData["users"]["users_api_key"])
     
      
@@ -101,21 +113,12 @@ function OpenRubikCharactersPanel()
     end
  // end of JS callback functions
 
-    html:SetZPos( -10 )
+    
     
     
     RubikCharacterPanelHtml = html
     
-    local quit = vgui.Create( "DImageButton", frame )
-    quit:SetPos(ScreenW-252/3,10)
-    quit:SetSize(252/4,93/4)
-    quit:SetImage( "rubik/characterpanel/all/close_pressed.png" )
-    quit.OnDepressed = function()
-        RubikCharPanelOpen2 = false
-        RubikCharPanelOpen1 = false
-        RubikCharacterPanelHome:Close()
-    end
-    quit:SetZPos( 10 )
+   
 
 
     RubikCharPanelOpen2 = true

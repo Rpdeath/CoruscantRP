@@ -171,7 +171,7 @@ end
 
 function RubikSpawnCharacter(len,ply) 
     PlayerInServerList[ply:SteamID64()]["SelectedCharacter"] = net.ReadTable()
-    
+    // print(util.TableToJSON(PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["ranks_format"], true))
     charName =  PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["ranks_format"]
     charName =  string.Replace(charName,"$surname$",PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["characters_surname"])
     charName =  string.Replace(charName,"$name$",PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["characters_name"])
@@ -182,7 +182,6 @@ function RubikSpawnCharacter(len,ply)
     ply:SetMaxArmor(0+tonumber(PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["perks_armor"]))
     ply:SetHealth(100+tonumber(PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["perks_health"]))
     ply:SetArmor(0+tonumber(PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["perks_armor"]))
-    print(util.TableToJSON(PlayerInServerList[ply:SteamID64()]["SelectedCharacter"], true))
 end 
 
 
@@ -195,7 +194,7 @@ end
 
 -- Checking if API Server is working ( We are sure that the server is running without major problems)
 firstConnecion = true
-serverUP = false -- we're assuming the server is down before checking it
+serverUP = true -- we're assuming the server is up before checking it
 
 hook.Add( "PlayerConnect", "JoinGlobalMessage", function( name, ip )
     if(firstConnecion) then
