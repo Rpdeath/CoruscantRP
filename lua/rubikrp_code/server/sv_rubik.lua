@@ -132,7 +132,11 @@ end
 function PlayerSpawing(ply)
     if(serverUP) then
         PlayerInServerList[ply:SteamID64()] = PlayerInServerList[ply:SteamID64()] or {}
-        GetPlayerData(ply,false)
+        initial = false
+        if (next(PlayerInServerList[ply:SteamID64()]) == nil ) then
+            initial = true
+        end
+        GetPlayerData(ply,initial)
     end
 end
 
