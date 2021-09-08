@@ -73,6 +73,7 @@ plyMeta.drawPlayerInfo = function(self)
 				// Model Display
 				ModelOnPlayer  = "Apparence Inconnu"
 				if (next(Skins) != nil) then
+					
 					for k,v in pairs(Skins) do
 						if self:GetModel() == v["skins_model"] then
 							ModelOnPlayer  = v["skins_name"]

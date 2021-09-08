@@ -113,7 +113,7 @@ function GetAllSkins(ply,panel) -- This Function return a dictionnary of all ran
     function( body, len, headers, code )
         Skins = util.JSONToTable(convert_TextTo_utf8(body)) or Skins or {} 
         net.Start("SendPlayerSkins")
-        net.WriteTable(Ranks)
+        net.WriteTable(Skins)
         net.Send(ply)
         GetAllRanks(ply,panel)
     end,   
@@ -179,6 +179,7 @@ function RubikSpawnCharacter(len,ply)
     ply:SetMaxArmor(0+tonumber(PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["perks_armor"]))
     ply:SetHealth(100+tonumber(PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["perks_health"]))
     ply:SetArmor(0+tonumber(PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["perks_armor"]))
+    ply:SetModel(PlayerInServerList[ply:SteamID64()]["SelectedCharacter"]["characters"][1]["skins"][1]["skins_model"])
 end 
 
 
@@ -226,11 +227,51 @@ net.Receive("RubikSpawnCharacter", RubikSpawnCharacter)
 
 
 -- Console Command ( Dev Purpose )
-char1 = "{\"users_id\":\"3\",\"0\":\"3\",\"factions_id\":\"7\",\"1\":\"7\",\"ranks_id\":\"8\",\"2\":\"8\",\"characters_id\":\"70\",\"3\":\"70\",\"perks_id\":\"2\",\"4\":\"2\",\"inventories_id\":\"2\",\"5\":\"2\",\"money\":\"1000\",\"6\":\"1000\",\"weapons\":\"{}\",\"7\":\"{}\",\"perks_name\":\"Fantassin\",\"8\":\"Fantassin\",\"perks_desc\":\"Entrain\u00e9 pour servir en premi\u00e8re ligne, vous avez fait vos preuves avec le maniement de la DC-15S\/A. Vous \u00eates maintenant d\u00e9ploy\u00e9 au sein de la ville de tunh afin de s\u00e9curiser les interets de la r\u00e9publique.\",\"9\":\"Entrain\u00e9 pour servir en premi\u00e8re ligne, vous avez fait vos preuves avec le maniement de la DC-15S\/A. Vous \u00eates maintenant d\u00e9ploy\u00e9 au sein de la ville de tunh afin de s\u00e9curiser les interets de la r\u00e9publique.\",\"perks_image\":\"fantassin\",\"10\":\"fantassin\",\"perks_health\":\"25\",\"11\":\"25\",\"perks_armor\":\"110\",\"12\":\"110\",\"perks_money\":\"1000\",\"13\":\"1000\",\"perks_primary\":\"1\",\"14\":\"1\",\"characters_perks_id\":\"66\",\"15\":\"66\",\"characters_name\":\"4582\",\"16\":\"4582\",\"characters_surname\":\"Folder\",\"17\":\"Folder\",\"users_characters_id\":\"26\",\"18\":\"26\",\"characters_ranks_id\":\"69\",\"19\":\"69\",\"characters_ranks_date\":\"2021-09-06 21:16:05\",\"20\":\"2021-09-06 21:16:05\",\"ranks_name\":\"Clone Trooper Blanc\",\"21\":\"Clone Trooper Blanc\",\"ranks_format\":\"CT $name$ '$surname$'\",\"22\":\"CT $name$ '$surname$'\",\"ranks_desc\":\"vous etes un Clone Trooper venant d'arriver sur la base\",\"23\":\"vous etes un Clone Trooper venant d'arriver sur la base\",\"ranks_vip\":\"0\",\"24\":\"0\",\"ranks_order\":\"0\",\"25\":\"0\",\"ranks_max_promote\":\"0\",\"26\":\"0\",\"ranks_starting\":\"1\",\"27\":\"1\",\"factions_name\":\"67th S\u00e9ction de Shock trooper\",\"28\":\"67th S\u00e9ction de Shock trooper\",\"factions_desc\":\"Les clones de la 67th section de shock trooper ont \u00e9t\u00e9 d\u00e9p\u00e9ch\u00e9s afin d'assurer l'ordre sur la ville de tunh, capitale d'une plan\u00e8te r\u00e9cemment conquise par les forces de la r\u00e9publique\",\"29\":\"Les clones de la 67th section de shock trooper ont \u00e9t\u00e9 d\u00e9p\u00e9ch\u00e9s afin d'assurer l'ordre sur la ville de tunh, capitale d'une plan\u00e8te r\u00e9cemment conquise par les forces de la r\u00e9publique\",\"factions_vip\":\"0\",\"30\":\"0\",\"Camp\":\"BLUE\",\"31\":\"BLUE\",\"starting_job_image\":\"clone\",\"32\":\"clone\",\"factions_matricule\":\"1\",\"33\":\"1\",\"users_name\":\"RpdeathFr\",\"34\":\"RpdeathFr\",\"users_api_key\":\"dTzuWBmSrB3W6Z6q9oYd\",\"35\":\"dTzuWBmSrB3W6Z6q9oYd\",\"users_max_character\":\"3\",\"36\":\"3\",\"users_steamid_64\":\"76561198038510425\",\"37\":\"76561198038510425\",\"users_vip\":\"0\",\"38\":\"0\",\"show_cinematic\":\"0\",\"39\":\"0\",\"skins\":[{\"skins_id\":\"1\",\"0\":\"1\",\"characters_skins_id\":\"59\",\"1\":\"59\",\"characters_id\":\"70\",\"2\":\"70\",\"characters_skins_active\":\"0\",\"3\":\"0\",\"skins_name\":\"models\/helios\/tc13\/base.mdl\",\"4\":\"models\/helios\/tc13\/base.mdl\",\"skins_model\":\"models\/helios\/tc13\/base.mdl\",\"5\":\"models\/helios\/tc13\/base.mdl\",\"skins_vip\":\"0\",\"6\":\"0\"}],\"licenses\":[{\"licenses_id\":\"2\",\"0\":\"2\",\"characters_licenses_id\":\"82\",\"1\":\"82\",\"characters_id\":\"70\",\"2\":\"70\",\"licenses_name\":\"Forces Republicaines\",\"3\":\"Forces Republicaines\",\"licenses_price\":\"0\",\"4\":\"0\",\"licenses_vip\":\"0\",\"5\":\"0\",\"licenses_canbuy\":\"0\",\"6\":\"0\",\"licenses_visible\":\"0\",\"7\":\"0\"},{\"licenses_id\":\"8\",\"0\":\"8\",\"characters_licenses_id\":\"83\",\"1\":\"83\",\"characters_id\":\"70\",\"2\":\"70\",\"licenses_name\":\"Papier d'identite\",\"3\":\"Papier d'identite\",\"licenses_price\":\"0\",\"4\":\"0\",\"licenses_vip\":\"0\",\"5\":\"0\",\"licenses_canbuy\":\"1\",\"6\":\"1\",\"licenses_visible\":\"0\",\"7\":\"0\"},{\"licenses_id\":\"7\",\"0\":\"7\",\"characters_licenses_id\":\"84\",\"1\":\"84\",\"characters_id\":\"70\",\"2\":\"70\",\"licenses_name\":\"Port d'arme de categorie C\",\"3\":\"Port d'arme de categorie C\",\"licenses_price\":\"0\",\"4\":\"0\",\"licenses_vip\":\"0\",\"5\":\"0\",\"licenses_canbuy\":\"0\",\"6\":\"0\",\"licenses_visible\":\"0\",\"7\":\"0\"}]}"
-
 listTestChar = {}
-listTestChar["CharTest_Clone"] =  util.JSONToTable(convert_TextTo_utf8(char1)) 
+-- listTestChar["CharTest_Clone"] =  util.JSONToTable(convert_TextTo_utf8(char1)) 
+-- listTestChar["CharTest_Police"] =  util.JSONToTable(convert_TextTo_utf8(charPolice))
 
+listTestChar["CharTest_Clone1"] = {}
+listTestChar["CharTest_Clone1"]["ranks_format"] = "CT $name$ '$surname$'"
+listTestChar["CharTest_Clone1"]["characters_surname"] = "Keltis"
+listTestChar["CharTest_Clone1"]["characters_name"] = "6875"
+listTestChar["CharTest_Clone1"]["ranks_name"] = "Clone Trooper"
+listTestChar["CharTest_Clone1"]["perks_health"] = "15"
+listTestChar["CharTest_Clone1"]["perks_armor"] = "100"
+listTestChar["CharTest_Clone1"]["skins_model"] = "models/helios/tc13u/unassigned/trooper/trooper.mdl"
+listTestChar["CharTest_Clone1"]["money"] = "100"
+
+
+listTestChar["CharTest_Clone2"] = {}
+listTestChar["CharTest_Clone2"]["ranks_format"] = "CT $name$ '$surname$'"
+listTestChar["CharTest_Clone2"]["characters_surname"] = "Necro"
+listTestChar["CharTest_Clone2"]["characters_name"] = "7571"
+listTestChar["CharTest_Clone2"]["ranks_name"] = "Clone Trooper"
+listTestChar["CharTest_Clone2"]["perks_health"] = "15"
+listTestChar["CharTest_Clone2"]["perks_armor"] = "100"
+listTestChar["CharTest_Clone2"]["skins_model"] = "models/helios/tc13u/unassigned/trooper/trooper.mdl"
+listTestChar["CharTest_Clone2"]["money"] = "100"
+
+
+listTestChar["CharTest_Police1"] = {}
+listTestChar["CharTest_Police1"]["ranks_format"] = "$name$ '$surname$'"
+listTestChar["CharTest_Police1"]["characters_surname"] = "Delman"
+listTestChar["CharTest_Police1"]["characters_name"] = "Korn"
+listTestChar["CharTest_Police1"]["ranks_name"] = "Policier"
+listTestChar["CharTest_Police1"]["perks_health"] = "15"
+listTestChar["CharTest_Police1"]["perks_armor"] = "100"
+listTestChar["CharTest_Police1"]["skins_model"] = "models/police/pm_coruscant_police.mdl"
+listTestChar["CharTest_Police1"]["money"] = "100"
+
+listTestChar["CharTest_Police2"] = {}
+listTestChar["CharTest_Police2"]["ranks_format"] = "$name$ '$surname$'"
+listTestChar["CharTest_Police2"]["characters_surname"] = "Pok"
+listTestChar["CharTest_Police2"]["characters_name"] = "Litos"
+listTestChar["CharTest_Police2"]["ranks_name"] = "Policier"
+listTestChar["CharTest_Police2"]["perks_health"] = "15"
+listTestChar["CharTest_Police2"]["perks_armor"] = "100"
+listTestChar["CharTest_Police2"]["skins_model"] = "models/police/pm_coruscant_police.mdl"
+listTestChar["CharTest_Police2"]["money"] = "100"
 
 
 
@@ -245,10 +286,13 @@ function RubikCommand(ply,cmd,args,argStr)
     if (args[1]=="bot") then
         if (args[2]=="changeChar") then
             botName = args[3] or "Bot01"
-            botChar = listTestChar[args[4]] or listTestChar["CharTest_Clone"]
+            botChar = listTestChar[args[4]] or listTestChar["CharTest_Clone1"]
+            
             for k,v in pairs(player.GetAll()) do
-                if v:isBot() then
-                    if v:Nick()==botName then
+                print(k,v,v:GetName(),v:Nick())
+                print()
+                if v:IsBot() then
+                    if v:GetName()==botName then
                         charName =  botChar["ranks_format"]
                         charName =  string.Replace(charName,"$surname$",botChar["characters_surname"])
                         charName =  string.Replace(charName,"$name$",botChar["characters_name"])
@@ -259,6 +303,7 @@ function RubikCommand(ply,cmd,args,argStr)
                         v:SetMaxArmor(0+tonumber(botChar["perks_armor"]))
                         v:SetHealth(100+tonumber(botChar["perks_health"]))
                         v:SetArmor(0+tonumber(botChar["perks_armor"]))
+                        v:SetModel(botChar["skins_model"])
                     end
                 end
             end
@@ -269,5 +314,5 @@ function RubikCommand(ply,cmd,args,argStr)
 
 end
 
-concommand.Add( "rubik", ChangeBotsToCharacters, RubikAutoComplete , "Theses commands are private since they are used to develop")
+concommand.Add( "rubik", RubikCommand, RubikAutoComplete , "Theses commands are private since they are used to develop")
 
