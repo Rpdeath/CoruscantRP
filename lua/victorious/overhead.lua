@@ -9,7 +9,7 @@ local plyMeta = FindMetaTable("Player")
 local HealthsTeam = 100
 
 PlayerInServerList = PlayerInServerList or {}
-
+Skins = Skins or {}
 plyMeta.drawPlayerInfo = function(self)  
     if not IsValid(self) then return end
 	local pos = self:EyePos()	
@@ -64,17 +64,25 @@ plyMeta.drawPlayerInfo = function(self)
 			
 			if (self:GetPos():Distance(LocalPlayer():GetPos()) <= 500) then
 			
-			draw.DrawText( string.upper(self:Nick()), "NumberFont", pos.x, pos.y - 96, Color( 255, 255, 255, FadeLerp* 255 ), TEXT_ALIGN_CENTER)					
-
-			if PlayerRanks[self:GetNWString("usergroup", "")] then
-				NamePos = pos.y + 100			
-				draw.DrawText( Ranked, "NumberFont", pos.x, pos.y - 63, Color( 255, 155, 0, FadeLerp* 255 ), TEXT_ALIGN_CENTER )		
-			end					
+				// Name Display
+				draw.DrawText( string.upper(self:Nick()), "NumberFont", pos.x + 100, pos.y - 130, Color( 255, 255, 255, FadeLerp* 255 ), TEXT_ALIGN_CENTER)	
+				surface.SetDrawColor( 200, 200, 200, 90  ) 	
+				surface.DrawLine(pos.x, pos.y, pos.x + 100, pos.y - 100)	
 				
-			if GAMEMODE.Config.showjob then
-				local teamname = self:getDarkRPVar("job") or team.GetName(self:Team())
-					draw.DrawText( string.upper(teamname),"NumberFont", pos.x, NamePos, Color( 200, 200, 200, FadeLerp* 255 ), TEXT_ALIGN_CENTER)      
-				end		
+				// Model Display
+				ModelOnPlayer  = "Apparence Inconnu"
+				if (next(Skins) != nil) then
+					for k,v in pairs(Skins) do
+						if self:GetModel() == v["skins_model"] then
+							ModelOnPlayer  = v["skins_name"]
+						end
+					end
+				end
+				draw.DrawText( ModelOnPlayer, "NumberFont", pos.x + 200, pos.y + 30, Color( 255, 255, 255, FadeLerp* 255 ), TEXT_ALIGN_CENTER)	
+				surface.SetDrawColor( 200, 200, 200, 90  ) 	
+				surface.DrawLine(pos.x, pos.y + 70, pos.x + 200, pos.y + 60)
+				
+
 			end			
 			
 			if (self:GetPos():Distance(LocalPlayer():GetPos()) <= 500) then
